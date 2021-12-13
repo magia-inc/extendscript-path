@@ -1,5 +1,9 @@
 {
   "extends": "@tsconfig/node14/tsconfig.json",
+  "compilerOptions": {
+    "isolatedModules": true,
+    "useDefineForClassFields": true
+  },
   "include": ["src/**/*.ts"],
   "exclude": ["extendscript/**/*.ts"]
 }
