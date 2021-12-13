@@ -17,8 +17,8 @@ export const getSourceFile = (
 
 const getParams = (paramsText: string): Params => {
   const params = paramsText.split(":");
-  if (params.length === 1) return { name: params[0], types: "any" };
-  return { name: params[0], types: params[1] };
+  if (params.length === 1) return { name: params[0].trim(), types: "any" };
+  return { name: params[0].trim(), types: params[1].trim() };
 };
 
 export const getFunctionTypes = (
