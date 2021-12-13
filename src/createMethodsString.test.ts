@@ -19,7 +19,7 @@ describe("createMethodsString", () => {
     };
     expect(createMethodsString(test1)).toBe("f1:() => fn(`f1()`),");
     expect(createMethodsString(test2)).toBe(
-      "f2:(p1, p2, p3) => fn(`f2(${p1}, ${p2}, ${p3})`),"
+      "f2:(p1, p2, p3) => fn(`f2('${p1}', '${p2}', '${p3}')`),"
     );
   });
 });
