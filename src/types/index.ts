@@ -12,6 +12,7 @@ const argvSchema = z.object({
   file: z.string(),
   config: z.string(),
   output: z.string(),
+  watch: z.boolean().optional(),
 });
 export type Argv = z.infer<typeof argvSchema>;
 export const isArgv = (input: unknown): input is Argv =>

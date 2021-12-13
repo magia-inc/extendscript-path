@@ -1,14 +1,15 @@
 {
   "name": "extendscript-path",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "extendscript-path.cjs.js",
   "bin": "./dist/extendscript-path.cjs.js",
   "scripts": {
     "dev": "node -r esbuild-register src/cli/ --file ./extendscript/main.ts --config ./extendscript/tsconfig.json --output ./output.js",
-    "build":"vite build",
+    "dev:watch": "node -r esbuild-register src/cli/ --file ./extendscript/main.ts --config ./extendscript/tsconfig.json --output ./output.js --watch=true",
+    "build": "vite build",
     "test": "jest",
-    "prepare":"npm run build"
+    "prepare": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +30,7 @@
     "zod": "^3.11.6"
   },
   "dependencies": {
+    "chokidar": "^3.5.2",
     "minimist": "^1.2.5",
     "option-t": "^29.1.0",
     "ts-morph": "^13.0.2",
