@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { devDependencies } from "./package.json";
+import { dependencies } from "./package.json";
 
 export default defineConfig({
   build: {
@@ -10,7 +10,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: [...Object.keys(devDependencies), "fs/promises"],
+      external: [...Object.keys(dependencies), "fs/promises"],
     },
     target: "es2020",
     sourcemap: true,
