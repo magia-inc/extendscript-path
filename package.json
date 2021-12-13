@@ -3,13 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "extendscript-path.cjs.js",
-  "module": "extendscript-path.es.js",
-  "exports":{
-    ".":{
-      "require":"./dist/extendscript-path.cjs.js",
-      "import":"./dist/extendscript-path.es.js"
-    }
-  },
+  "bin": "./dist/extendscript-path.cjs.js",
   "scripts": {
     "dev": "node -r esbuild-register src/cli/ --file ./extendscript/main.ts --config ./extendscript/tsconfig.json",
     "build":"vite build",
