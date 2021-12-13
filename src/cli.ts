@@ -2,7 +2,7 @@ import { getFunctionTypes, getSourceFile } from "./getFunctionTypes";
 import { createOutputFileString } from "./createOutputFileString";
 import { writeFile } from "fs/promises";
 import minimist from "minimist";
-import { z } from "zod";
+import { Argv, isArgv } from "./types";
 
 const cli = async ({ file, config, output }: Argv) => {
   const sourceFile = getSourceFile(config, file);
@@ -12,15 +12,6 @@ const cli = async ({ file, config, output }: Argv) => {
   const writeText = createOutputFileString(functionType.val);
   await writeFile(output, writeText);
 };
-
-const argvSchema = z.object({
-  file: z.string(),
-  config: z.string(),
-  output: z.string(),
-});
-type Argv = z.infer<typeof argvSchema>;
-const isArgv = (input: unknown): input is Argv =>
-  argvSchema.safeParse(input).success;
 
 const argv = minimist(process.argv.slice(2), {
   string: ["file", "tsconfig", "output"],

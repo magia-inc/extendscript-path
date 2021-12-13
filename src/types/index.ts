@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type FunctionType = {
   name: string;
   params: Params[];
@@ -5,3 +7,12 @@ export type FunctionType = {
 };
 
 export type Params = { name: string; types: string };
+
+const argvSchema = z.object({
+  file: z.string(),
+  config: z.string(),
+  output: z.string(),
+});
+export type Argv = z.infer<typeof argvSchema>;
+export const isArgv = (input: unknown): input is Argv =>
+  argvSchema.safeParse(input).success;
