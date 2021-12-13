@@ -8,11 +8,12 @@ ${createReturnJsDoc(functionType.returnType)}
   `;
 };
 
-const createParamsJsDoc = (params: FunctionType["params"]): string => {
+export const createParamsJsDoc = (params: FunctionType["params"]): string => {
   return params
-    .map(({ name, types }) => `* @param {${types}} ${name}}`)
+    .map(({ name, types }) => `* @param {${types}} ${name}`)
     .join("\n");
 };
 
-const createReturnJsDoc = (returnType: FunctionType["returnType"]): string =>
-  `* @return {${returnType}}`;
+export const createReturnJsDoc = (
+  returnType: FunctionType["returnType"]
+): string => `* @return {${returnType}}`;

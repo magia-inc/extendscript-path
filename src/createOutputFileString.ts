@@ -19,7 +19,7 @@ const template = (methods: string, moduleType: "esm" | "cjs") => {
 
 const extendscriptPath = (fn) => {
   return {
-${methods.split("\n").join("\n    ")}
+${methods.split("\n").join("\n ")}
   }
 }
 
