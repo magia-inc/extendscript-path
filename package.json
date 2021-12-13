@@ -5,7 +5,7 @@
   "main": "extendscript-path.cjs.js",
   "bin": "./dist/extendscript-path.cjs.js",
   "scripts": {
-    "dev": "node -r esbuild-register src/cli/ --file ./extendscript/main.ts --config ./extendscript/tsconfig.json",
+    "dev": "node -r esbuild-register src/cli/ --file ./extendscript/main.ts --config ./extendscript/tsconfig.json --output ./output.js",
     "build":"vite build",
     "test": "jest",
     "prepare":"npm run build"
