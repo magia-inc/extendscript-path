@@ -6,9 +6,10 @@
 
 ### Cli Options
 
-| Option            | Type      | Default | Description |
-| ----------------- | --------- | ------- | ----------- |
-| `--file` `-f`     | `string`  |         |             |
-| `--tsconfig` `-c` | `string`  |         |             |
-| `--output` `-o`   | `string`  |         |             |
-| `--watch` `-w`    | `boolean` | `false` |             |
+| Option            | Type       | Default | Description |
+| ----------------- | ---------- | ------- | ----------- |
+| `--file` `-f`     | `string`   |         |             |
+| `--tsconfig` `-c` | `string`   |         |             |
+| `--output` `-o`   | `string`   |         |             |
+| `--watch` `-w`    | `boolean`  | `false` |             |
+| `--valFunc` `-v`  | `string[]` |         |             |

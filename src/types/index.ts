@@ -13,6 +13,7 @@ const argvSchema = z.object({
   config: z.string(),
   output: z.string(),
   watch: z.boolean().optional(),
+  valFunc: z.string().array().optional(),
 });
 export type Argv = z.infer<typeof argvSchema>;
 export const isArgv = (input: unknown): input is Argv =>

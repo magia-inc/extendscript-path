@@ -1,17 +1,38 @@
-import { getFunctionTypes, getSourceFile } from "./getFunctionTypes";
+import {
+  getFunctionTypes,
+  getSourceFile,
+  getVariableFunctionTypes,
+} from "./getFunctionTypes";
 import { createOutputFileString } from "./createOutputFileString";
 import { writeFile } from "fs/promises";
 import minimist from "minimist";
 import { Argv, isArgv } from "./types";
 import chokidar from "chokidar";
 
-const build = async ({ file, config, output }: Argv) => {
+const build = async ({ file, config, output, valFunc }: Argv) => {
   const sourceFile = getSourceFile(config, file);
   if (!sourceFile.ok) throw new Error(sourceFile.err);
+
   const functionType = getFunctionTypes(sourceFile.val);
   if (!functionType.ok) throw new Error("関数の型の取得でエラーが発生しました");
-  const writeText = createOutputFileString(functionType.val);
-  await writeFile(output, writeText);
+
+  if (valFunc) {
+    const variableFunctionTypes = getVariableFunctionTypes(
+      sourceFile.val,
+      valFunc
+    );
+    if (!variableFunctionTypes.ok)
+      throw new Error("関数の型の取得でエラーが発生しました");
+
+    const writeText = createOutputFileString([
+      ...functionType.val,
+      ...variableFunctionTypes.val,
+    ]);
+    await writeFile(output, writeText);
+  } else {
+    const writeText = createOutputFileString(functionType.val);
+    await writeFile(output, writeText);
+  }
 };
 
 const watch = async (argv: Argv) => {
@@ -32,8 +53,8 @@ const watch = async (argv: Argv) => {
 };
 
 const argv = minimist(process.argv.slice(2), {
-  string: ["file", "tsconfig", "output", "watch"],
-  alias: { f: "file", c: "tsconfig", o: "output", w: "watch" },
+  string: ["file", "tsconfig", "output", "watch", "valFunc"],
+  alias: { f: "file", c: "tsconfig", o: "output", w: "watch", v: "valFunc" },
   boolean: "watch",
 });
 

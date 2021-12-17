@@ -31,7 +31,6 @@ export const getFunctionTypes = (
       .getParameters()
       .map((parameter) => getParams(parameter.getText()));
     const returnType = fn.getReturnType().getText();
-    console.log(name);
     if (!name) return [];
     return { name, params, returnType };
   });
@@ -45,8 +44,8 @@ export const getVariableFunctionTypes = (
 ): Result<FunctionType[], string> => {
   const res = variableDeclaration.flatMap((valName) => {
     const functionExpression = file
-      .getVariableDeclarationOrThrow(valName)
-      .getInitializerOrThrow();
+      .getVariableDeclaration(valName)
+      ?.getInitializer();
     if (!Node.isArrowFunction(functionExpression)) {
       console.log("skipping " + valName);
       return [];
